@@ -1,20 +1,17 @@
 package com.main.carbon_emission_monitor.domain;
 
+import lombok.Getter;
+import lombok.Setter;
 import org.mindrot.jbcrypt.BCrypt;
 
 public class UserEntity {
+    @Getter
+    @Setter
     private String username;
+
     private String password;
 
 
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
 
 
     public void setPassword(String password) {
