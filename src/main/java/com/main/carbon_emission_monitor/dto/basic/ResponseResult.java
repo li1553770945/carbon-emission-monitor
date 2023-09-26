@@ -4,15 +4,11 @@ package com.main.carbon_emission_monitor.dto.basic;
 import java.io.Serial;
 import java.io.Serializable;
 
-public class ResponseResult<T> implements Serializable {
+public class ResponseResult<T> implements  Serializable{
 
-    @Serial
-    private static final long serialVersionUID = 958295628567280402L;
-
-
-    private final int code;
-    private String msg;
-    private T data;
+    public  int code;
+    public String msg;
+    public T data;
 
 
 
@@ -21,11 +17,10 @@ public class ResponseResult<T> implements Serializable {
         code = ResultCode.SUCCESS;
     }
 
-
     public ResponseResult(T data) {
         this(ResultCode.SUCCESS, null,data);
     }
-
+//
     public ResponseResult(int code, String msg,T data) {
         this.code = code;
         this.msg = msg;

@@ -18,7 +18,6 @@ public class JwtUserDetailsService implements UserDetailsService {
     @Override
     public JwtUserDetails loadUserByUsername(final String username) {
         final List<SimpleGrantedAuthority> roles = Collections.singletonList(new SimpleGrantedAuthority("user"));
-        System.out.println(username);
         return new JwtUserDetails(1L, username, "{noop}123456",roles );
     }
 

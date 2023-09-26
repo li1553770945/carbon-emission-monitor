@@ -1,8 +1,9 @@
 package com.main.carbon_emission_monitor.controller;
-import com.main.carbon_emission_monitor.dto.AuthenticationRequest;
-import com.main.carbon_emission_monitor.dto.AuthenticationResponse;
+import com.main.carbon_emission_monitor.dto.LoginRequest;
+import com.main.carbon_emission_monitor.dto.LoginResponse;
 import com.main.carbon_emission_monitor.service.impl.JwtTokenService;
 import com.main.carbon_emission_monitor.service.impl.JwtUserDetailsService;
+import com.main.carbon_emission_monitor.dto.basic.ResponseResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -26,22 +27,20 @@ public class LoginController {
         this.authenticationManager = authenticationManager;
     }
 
-    @PostMapping("/authenticate")
-    public AuthenticationResponse authenticate(@RequestBody  final AuthenticationRequest authenticationRequest) {
+    @PostMapping("/login")
+    public ResponseResult<LoginResponse> authenticate(@RequestBody  final LoginRequest authenticationRequest) {
         try {
 
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
-                    authenticationRequest.getLogin(), authenticationRequest.getPassword()));
+                    authenticationRequest.getUsername(), authenticationRequest.getPassword()));
         } catch (final BadCredentialsException ex) {
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED);
         }
-
-        final UserDetails userDetails = jwtUserDetailsService.loadUserByUsername(authenticationRequest.getLogin());
-        final AuthenticationResponse authenticationResponse = new AuthenticationResponse();
-
+        final UserDetails userDetails = jwtUserDetailsService.loadUserByUsername(authenticationRequest.getUsername());
+        final LoginResponse authenticationResponse = new LoginResponse();
         authenticationResponse.setAccessToken(jwtTokenService.generateToken(userDetails));
 
-        return authenticationResponse;
+        return ResponseResult.success(authenticationResponse);
     }
 
 }
