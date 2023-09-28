@@ -7,4 +7,8 @@
     <select id="selectById" resultType="UserDO" parameterType="long">
         SELECT * FROM user_entities WHERE id = #{id}
     </select>
+    <insert id="insertUser" parameterType="com.main.carbon_emission_monitor.po.UserDO" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO user_entities (username, password,nickname)
+        VALUES (#{username}, #{password},#{nickname})
+    </insert>
 </mapper>

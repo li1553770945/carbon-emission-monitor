@@ -7,4 +7,5 @@ import org.springframework.stereotype.Repository;
 public interface UserDAO {
     UserDO selectById(long id);
     UserDO selectByUsername(String username);
+    long insertUser(UserDO userDO);
 }

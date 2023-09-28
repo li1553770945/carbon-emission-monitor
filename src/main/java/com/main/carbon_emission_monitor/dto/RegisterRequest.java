@@ -1,12 +1,10 @@
 package com.main.carbon_emission_monitor.dto;
 
 import lombok.Data;
-import lombok.Setter;
 
 @Data
-public class UserDTO {
-
+public class RegisterRequest {
     private String username;
     private String password;
-
+    private String nickname;
 }
