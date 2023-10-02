@@ -19,6 +19,10 @@ public interface ResultCode {
     //用户权限异常
     int FORBIDDEN_ERROR = 4300;
 
+    //参数异常
+    int REQUEST_PARAM_ERROR = 4400;
+
+
 
 
 }

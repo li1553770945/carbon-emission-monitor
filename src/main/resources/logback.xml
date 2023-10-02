@@ -1,0 +1,33 @@
+<configuration>
+    <appender name="ERROR_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>logs/error/error.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- 按日期滚动 -->
+            <fileNamePattern>logs/error/error-%d{yyyy-MM-dd}.log</fileNamePattern>
+            <!-- 最大历史日志文件数 -->
+            <maxHistory>7</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%date{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %file:%line - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+
+
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%date{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %file:%line - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <logger name="com.main" level="error" additivity="false">
+        <appender-ref ref="ERROR_FILE"/>
+    </logger>
+
+    <!-- 其他的日志配置 -->
+
+    <root level="info">
+        <appender-ref ref="CONSOLE"/> <!-- 将日志输出到控制台 -->
+    </root>
+
+</configuration>

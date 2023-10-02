@@ -35,5 +35,7 @@ build/
 /src/main/resources/app.pub
 /src/main/resources/application.properties
 
+
 .stfolder
 .stversions
+

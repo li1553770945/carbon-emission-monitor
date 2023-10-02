@@ -48,9 +48,11 @@ public class UserController {
         return ResponseResult.success();
     }
     @PostMapping("/login")
-    public ResponseResult<LoginResponse> login(@RequestBody  final LoginRequest authenticationRequest) throws BusinessException {
+    public ResponseResult<LoginResponse> login(@RequestBody  final LoginRequest authenticationRequest, BindingResult bindingResult) throws BusinessException {
+        if (bindingResult.hasErrors()){
+            throw  new BusinessException(ErrorCodeEnums.PARAM_VALIDATE_ERROR.getCode(),bindingResult.getFieldError().getDefaultMessage());
+        }
         try {
-
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
                     authenticationRequest.getUsername(), authenticationRequest.getPassword()));
         } catch (final BadCredentialsException ex) {
