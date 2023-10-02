@@ -22,6 +22,7 @@ public class UserServiceImpl implements UserService {
         if(userRepo.checkUserExistsByUsername(userEntity.getUsername())){
             throw new BusinessException(ErrorCodeEnums.USERNAME_EXIST_ERROR.getCode(),ErrorCodeEnums.USERNAME_EXIST_ERROR.getDesc());
         }
+        userEntity.encryptPassword();
         userRepo.saveUser(userEntity);
         return 0;
     }

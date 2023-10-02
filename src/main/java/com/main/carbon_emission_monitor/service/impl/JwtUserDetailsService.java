@@ -4,7 +4,6 @@ import com.main.carbon_emission_monitor.domain.JwtUserDetails;
 import com.main.carbon_emission_monitor.domain.UserEntity;
 import com.main.carbon_emission_monitor.repo.impl.UserRepoImpl;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
@@ -14,8 +13,6 @@ import java.util.Collections;
 @Service
 public class JwtUserDetailsService implements UserDetailsService {
 
-    public static final String USER = "USER";
-    public static final String ROLE_USER = "ROLE_" + USER;
     private final UserRepoImpl userRepoImpl;
 
     @Autowired
@@ -34,7 +31,7 @@ public class JwtUserDetailsService implements UserDetailsService {
         if (userEntity == null){
             throw new UsernameNotFoundException("用户名或密码错误");
         }
-        return new JwtUserDetails(userEntity.getId(), username, "{noop}"+userEntity.getPassword(), roles);
+        return new JwtUserDetails(userEntity.getId(), username, userEntity.getPassword(), roles);
 
     }
 

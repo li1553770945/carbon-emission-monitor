@@ -1,8 +1,6 @@
 package com.main.carbon_emission_monitor.domain;
 
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
 import org.mindrot.jbcrypt.BCrypt;
 
 import java.time.LocalDateTime;
@@ -16,5 +14,9 @@ public class UserEntity {
     private LocalDateTime createAt;
     private LocalDateTime updateAt;
     private LocalDateTime deleteAt;
+
+    public void encryptPassword(){
+        this.password = "{bcrypt}"+BCrypt.hashpw(this.password,BCrypt.gensalt());
+    }
 
 }
