@@ -41,13 +41,10 @@ public class ResponseResult<T> implements  Serializable{
         return new ResponseResult<T>(data);
     }
 
-    public static <T> ResponseResult<T> fail() {
-        return new ResponseResult<T>();
-    }
 
 
-    public static <T> ResponseResult<T> fail(String msg) {
-        return new ResponseResult<T>(ErrorCodeEnums.SYSTEM_EXCEPTION.getCode(), msg);
+    public static <T> ResponseResult<T> fail(int code,String msg) {
+        return new ResponseResult<T>(code, msg);
     }
 
 

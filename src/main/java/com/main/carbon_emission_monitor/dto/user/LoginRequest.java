@@ -1,4 +1,4 @@
-package com.main.carbon_emission_monitor.dto;
+package com.main.carbon_emission_monitor.dto.user;
 
 
 import lombok.Data;

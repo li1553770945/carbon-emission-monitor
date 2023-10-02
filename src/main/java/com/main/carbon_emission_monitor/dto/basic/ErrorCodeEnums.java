@@ -2,15 +2,12 @@ package com.main.carbon_emission_monitor.dto.basic;
 
 public enum ErrorCodeEnums {
 
-    SYSTEM_EXCEPTION("SYSTEM_EXCEPTION", "系统异常", ResultCode.SYSTEM_ERROR),
-    INTERFACE_EXCEPTION("INTERFACE_EXCEPTION", "接口异常", ResultCode.SYSTEM_ERROR),
-    PARAM_VALIDATE_EXCEPTION("PARAM_VALIDATE_EXCEPTION", "参数校验异常", ResultCode.PARAM_VALIDATE_ERROR),
-    USER_NOT_LOGIN_EXCEPTION("USER_NOT_LOGIN_EXCEPTION", "用户未登录", ResultCode.NOT_LOGIN_ERROR),
-    USER_REPEAT_EXCEPTION("USER_REPEAT_EXCEPTION", "用户表存在重复用户信息", ResultCode.NOT_LOGIN_ERROR);
+    SYSTEM_EXCEPTION("SYSTEM_ERROR", "系统异常", ResultCode.SYSTEM_UNKNOWN_ERROR),
+    PARAM_VALIDATE_ERROR("PARAM_VALIDATE_ERROR", "参数校验异常", ResultCode.PARAM_VALIDATE_ERROR),
+    USERNAME_EXIST_ERROR("USERNAME_EXIST_ERROR","用户已经存在",ResultCode.USERNAME_EXIST_ERROR),
+    FORBIDDEN_ERROR("FORBIDDEN_ERROR","禁止访问",ResultCode.FORBIDDEN_ERROR);
 
-    /**
-     * 错误名字
-     */
+
     private final String name;
 
     /**

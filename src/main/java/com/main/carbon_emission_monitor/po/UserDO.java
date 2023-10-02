@@ -11,5 +11,7 @@ public class UserDO {
         String password;
         String nickname;
         LocalDateTime createAt;
+        LocalDateTime updateAt;
+        LocalDateTime deleteAt;
 
 }

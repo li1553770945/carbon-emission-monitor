@@ -1,4 +1,4 @@
-package com.main.carbon_emission_monitor.dto;
+package com.main.carbon_emission_monitor.dto.user;
 
 import lombok.Data;
 
@@ -11,6 +11,6 @@ public class UserResponse {
     private String username;
     private String nickname;
     private LocalDateTime createAt;
-
-
+    private LocalDateTime updateAt;
+    private LocalDateTime deleteAt;
 }

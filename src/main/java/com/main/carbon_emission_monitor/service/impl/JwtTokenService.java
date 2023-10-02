@@ -38,7 +38,6 @@ public class JwtTokenService {
         try {
             return verifier.verify(token).getSubject();
         } catch (final JWTVerificationException verificationEx) {
-            System.out.println("token invalid: " +  verificationEx.getMessage());
             return null;
         }
     }

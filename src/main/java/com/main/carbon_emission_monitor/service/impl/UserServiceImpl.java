@@ -1,5 +1,7 @@
 package com.main.carbon_emission_monitor.service.impl;
 import com.main.carbon_emission_monitor.domain.UserEntity;
+import com.main.carbon_emission_monitor.dto.basic.BusinessException;
+import com.main.carbon_emission_monitor.dto.basic.ErrorCodeEnums;
 import com.main.carbon_emission_monitor.repo.impl.UserRepoImpl;
 import com.main.carbon_emission_monitor.service.UserService;
 import org.springframework.stereotype.Service;
@@ -16,7 +18,10 @@ public class UserServiceImpl implements UserService {
     public boolean Login(String username,String password){
         return false;
     }
-    public long Register(UserEntity userEntity){
+    public long Register(UserEntity userEntity) throws BusinessException{
+        if(userRepo.checkUserExistsByUsername(userEntity.getUsername())){
+            throw new BusinessException(ErrorCodeEnums.USERNAME_EXIST_ERROR.getCode(),ErrorCodeEnums.USERNAME_EXIST_ERROR.getDesc());
+        }
         userRepo.saveUser(userEntity);
         return 0;
     }

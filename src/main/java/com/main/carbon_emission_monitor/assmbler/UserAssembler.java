@@ -1,10 +1,9 @@
 package com.main.carbon_emission_monitor.assmbler;
 
 import com.main.carbon_emission_monitor.domain.UserEntity;
-import com.main.carbon_emission_monitor.dto.RegisterRequest;
-import com.main.carbon_emission_monitor.dto.UserResponse;
+import com.main.carbon_emission_monitor.dto.user.RegisterRequest;
+import com.main.carbon_emission_monitor.dto.user.UserResponse;
 import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
 
 @Mapper

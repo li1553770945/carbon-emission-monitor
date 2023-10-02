@@ -7,5 +7,8 @@ import org.springframework.stereotype.Repository;
 public interface UserDAO {
     UserDO selectById(long id);
     UserDO selectByUsername(String username);
-    long insertUser(UserDO userDO);
+    Long insertUser(UserDO userDO);
+
+    Boolean checkUserExistsByUsername(String username);
+    void updateUser(UserDO userDO);
 }

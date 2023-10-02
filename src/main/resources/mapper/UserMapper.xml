@@ -8,7 +8,17 @@
         SELECT * FROM user_entities WHERE id = #{id}
     </select>
     <insert id="insertUser" parameterType="com.main.carbon_emission_monitor.po.UserDO" useGeneratedKeys="true" keyProperty="id">
-        INSERT INTO user_entities (username, password,nickname)
-        VALUES (#{username}, #{password},#{nickname})
+        INSERT INTO user_entities (username, password,nickname,create_at)
+        VALUES (#{username}, #{password},#{nickname},#{createAt})
     </insert>
+    <update id="updateUser" parameterType="com.main.carbon_emission_monitor.po.UserDO">
+        UPDATE user_entities
+        SET
+            password = #{password},
+            nickname = #{nickname},
+            update_at = #{updateAt},
+            delete_at = #{deleteAt}
+        WHERE
+            id = #{id}
+    </update>
 </mapper>

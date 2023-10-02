@@ -14,5 +14,7 @@ public class UserEntity {
     private String password;
     private String nickname;
     private LocalDateTime createAt;
+    private LocalDateTime updateAt;
+    private LocalDateTime deleteAt;
 
 }
