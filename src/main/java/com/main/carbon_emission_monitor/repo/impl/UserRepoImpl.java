@@ -2,12 +2,10 @@ package com.main.carbon_emission_monitor.repo.impl;
 
 import com.main.carbon_emission_monitor.converter.UserConverter;
 import com.main.carbon_emission_monitor.dao.UserDAO;
-import com.main.carbon_emission_monitor.domain.UserEntity;
+import com.main.carbon_emission_monitor.domain.user.UserEntity;
 import com.main.carbon_emission_monitor.po.UserDO;
 import com.main.carbon_emission_monitor.repo.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Repository;
 
 import java.time.LocalDateTime;
@@ -40,8 +38,9 @@ public class UserRepoImpl implements UserRepo {
                 userDO.setCreateAt(LocalDateTime.now());
                 return userDAO.insertUser(userDO);
         } else {
-                //TODO: 修改用户没有实现
-                return 0L;
+                userDO.setUpdateAt(LocalDateTime.now());
+                userDAO.updateUser(userDO);
+                return userDO.getId();
             }
     }
     @Override

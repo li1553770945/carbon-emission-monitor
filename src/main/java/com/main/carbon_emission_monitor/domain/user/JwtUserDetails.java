@@ -1,4 +1,4 @@
-package com.main.carbon_emission_monitor.domain;
+package com.main.carbon_emission_monitor.domain.user;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.User;

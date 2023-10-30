@@ -3,28 +3,44 @@ package com.main.carbon_emission_monitor.controller;
 import com.main.carbon_emission_monitor.dto.basic.BusinessException;
 import com.main.carbon_emission_monitor.dto.basic.ErrorCodeEnums;
 import com.main.carbon_emission_monitor.dto.basic.ResponseResult;
-import com.main.carbon_emission_monitor.dto.basic.SystemException;
 import org.springframework.http.converter.HttpMessageNotReadableException;
+import org.springframework.validation.FieldError;
+import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
     private static final Logger logger = LoggerFactory.getLogger(GlobalExceptionHandler.class);
 
+
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public  ResponseResult<String> handleValidationException(MethodArgumentNotValidException ex) {
+        return ResponseResult.fail(ErrorCodeEnums.REQUEST_PARAM_ERROR.getCode(),"参数验证失败：" + ex.getBindingResult().getFieldError().getDefaultMessage());
+    }
+
+    @ExceptionHandler(MissingServletRequestParameterException.class)
+    public ResponseResult<String> handleMissingParams(MissingServletRequestParameterException ex) {
+        return ResponseResult.fail(ErrorCodeEnums.REQUEST_PARAM_ERROR.getCode(),"缺少必要的请求参数：" + ex.getParameterName());
+    }
+
+    @ExceptionHandler(BusinessException.class)
+    public ResponseResult<String> handleBusinessException(BusinessException businessException) {
+        return ResponseResult.fail(businessException.getCode(), businessException.getMessage());
+    }
     @ExceptionHandler(Exception.class)
     public ResponseResult<?> doException(Exception ex) {
-        if (ex instanceof BusinessException businessException) {
-            return ResponseResult.fail(businessException.getCode(), businessException.getMessage());
-        } else if(ex instanceof HttpMessageNotReadableException){
+       if(ex instanceof HttpMessageNotReadableException){
             return ResponseResult.fail(ErrorCodeEnums.REQUEST_PARAM_ERROR.getCode(),ErrorCodeEnums.REQUEST_PARAM_ERROR.getDesc());
-
-        }else {
-
-            logger.error("",ex);
+        } else {
+            logger.error("系统错误",ex);
             return ResponseResult.fail(ErrorCodeEnums.SYSTEM_EXCEPTION.getCode(), "系统异常");
         }
     }

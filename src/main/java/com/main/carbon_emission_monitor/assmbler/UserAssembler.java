@@ -1,6 +1,6 @@
 package com.main.carbon_emission_monitor.assmbler;
 
-import com.main.carbon_emission_monitor.domain.UserEntity;
+import com.main.carbon_emission_monitor.domain.user.UserEntity;
 import com.main.carbon_emission_monitor.dto.user.RegisterRequest;
 import com.main.carbon_emission_monitor.dto.user.UserResponse;
 import org.mapstruct.Mapper;

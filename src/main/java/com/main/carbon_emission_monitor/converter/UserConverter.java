@@ -1,9 +1,8 @@
 package com.main.carbon_emission_monitor.converter;
 
-import com.main.carbon_emission_monitor.domain.UserEntity;
+import com.main.carbon_emission_monitor.domain.user.UserEntity;
 import com.main.carbon_emission_monitor.po.UserDO;
 import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
 
 @Mapper

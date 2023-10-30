@@ -1,7 +1,7 @@
 package com.main.carbon_emission_monitor.controller;
 
 import com.main.carbon_emission_monitor.assmbler.UserAssembler;
-import com.main.carbon_emission_monitor.domain.UserEntity;
+import com.main.carbon_emission_monitor.domain.user.UserEntity;
 import com.main.carbon_emission_monitor.dto.basic.BusinessException;
 import com.main.carbon_emission_monitor.dto.basic.ErrorCodeEnums;
 import com.main.carbon_emission_monitor.dto.user.LoginRequest;
@@ -9,9 +9,9 @@ import com.main.carbon_emission_monitor.dto.user.LoginResponse;
 import com.main.carbon_emission_monitor.dto.user.RegisterRequest;
 import com.main.carbon_emission_monitor.dto.user.UserResponse;
 import com.main.carbon_emission_monitor.dto.basic.ResponseResult;
+import com.main.carbon_emission_monitor.service.UserService;
 import com.main.carbon_emission_monitor.service.impl.JwtTokenService;
 import com.main.carbon_emission_monitor.service.impl.JwtUserDetailsService;
-import com.main.carbon_emission_monitor.service.impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -25,13 +25,13 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/api/user")
 public class UserController {
-    UserServiceImpl userService;
+    UserService userService;
     final JwtTokenService jwtTokenService;
     final JwtUserDetailsService jwtUserDetailsService;
     final AuthenticationManager authenticationManager;
 
     @Autowired
-    UserController(UserServiceImpl userService,JwtTokenService jwtTokenService, JwtUserDetailsService jwtUserDetailsService, AuthenticationManager authenticationManager){
+    UserController(UserService userService, JwtTokenService jwtTokenService, JwtUserDetailsService jwtUserDetailsService, AuthenticationManager authenticationManager){
         this.userService = userService;
         this.jwtTokenService = jwtTokenService;
         this.jwtUserDetailsService = jwtUserDetailsService;

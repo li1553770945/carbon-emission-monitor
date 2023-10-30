@@ -1,7 +1,7 @@
 package com.main.carbon_emission_monitor.service.impl;
 
-import com.main.carbon_emission_monitor.domain.JwtUserDetails;
-import com.main.carbon_emission_monitor.domain.UserEntity;
+import com.main.carbon_emission_monitor.domain.user.JwtUserDetails;
+import com.main.carbon_emission_monitor.domain.user.UserEntity;
 import com.main.carbon_emission_monitor.repo.impl.UserRepoImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetailsService;

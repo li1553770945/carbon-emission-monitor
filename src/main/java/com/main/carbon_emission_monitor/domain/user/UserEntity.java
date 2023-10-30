@@ -1,4 +1,4 @@
-package com.main.carbon_emission_monitor.domain;
+package com.main.carbon_emission_monitor.domain.user;
 
 import lombok.Data;
 import org.mindrot.jbcrypt.BCrypt;

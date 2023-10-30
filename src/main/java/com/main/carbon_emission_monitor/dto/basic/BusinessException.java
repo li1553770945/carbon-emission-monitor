@@ -4,9 +4,9 @@ import lombok.Getter;
 import lombok.Setter;
 
 
+@Getter
+@Setter
 public class BusinessException extends Exception{
-    @Getter
-    @Setter
     private Integer code;
 
     public BusinessException(Integer code, String message) {
