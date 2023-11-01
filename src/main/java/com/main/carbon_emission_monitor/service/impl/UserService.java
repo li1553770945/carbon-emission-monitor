@@ -3,16 +3,16 @@ import com.main.carbon_emission_monitor.domain.user.UserEntity;
 import com.main.carbon_emission_monitor.dto.basic.BusinessException;
 import com.main.carbon_emission_monitor.dto.basic.ErrorCodeEnums;
 import com.main.carbon_emission_monitor.repo.impl.UserRepoImpl;
-import com.main.carbon_emission_monitor.service.UserService;
+import com.main.carbon_emission_monitor.service.IUserService;
 import org.springframework.stereotype.Service;
 
 
 @Service
-public class UserServiceImpl implements UserService {
+public class UserService implements IUserService {
 
     private final UserRepoImpl userRepo;
 
-    UserServiceImpl(UserRepoImpl userRepo){
+    UserService(UserRepoImpl userRepo){
         this.userRepo = userRepo;
     }
     public boolean Login(String username,String password){

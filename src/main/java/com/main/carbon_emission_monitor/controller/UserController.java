@@ -9,7 +9,7 @@ import com.main.carbon_emission_monitor.dto.user.LoginResponse;
 import com.main.carbon_emission_monitor.dto.user.RegisterRequest;
 import com.main.carbon_emission_monitor.dto.user.UserResponse;
 import com.main.carbon_emission_monitor.dto.basic.ResponseResult;
-import com.main.carbon_emission_monitor.service.UserService;
+import com.main.carbon_emission_monitor.service.IUserService;
 import com.main.carbon_emission_monitor.service.impl.JwtTokenService;
 import com.main.carbon_emission_monitor.service.impl.JwtUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,13 +25,13 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/api/user")
 public class UserController {
-    UserService userService;
+    IUserService userService;
     final JwtTokenService jwtTokenService;
     final JwtUserDetailsService jwtUserDetailsService;
     final AuthenticationManager authenticationManager;
 
     @Autowired
-    UserController(UserService userService, JwtTokenService jwtTokenService, JwtUserDetailsService jwtUserDetailsService, AuthenticationManager authenticationManager){
+    UserController(IUserService userService, JwtTokenService jwtTokenService, JwtUserDetailsService jwtUserDetailsService, AuthenticationManager authenticationManager){
         this.userService = userService;
         this.jwtTokenService = jwtTokenService;
         this.jwtUserDetailsService = jwtUserDetailsService;
