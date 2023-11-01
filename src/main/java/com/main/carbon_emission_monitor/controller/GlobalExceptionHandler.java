@@ -32,18 +32,18 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(BusinessException.class)
-    public ResponseResult<String> handleBusinessException(BusinessException businessException) {
-        return ResponseResult.fail(businessException.getCode(), businessException.getMessage());
+    public ResponseResult<String> handleBusinessException(BusinessException ex) {
+        return ResponseResult.fail(ex.getCode(), ex.getMessage());
+    }
+
+    @ExceptionHandler(HttpMessageNotReadableException.class)
+    public ResponseResult<String> handleBusinessException(HttpMessageNotReadableException ex) {
+        return ResponseResult.fail(ErrorCodeEnums.REQUEST_PARAM_ERROR.getCode(),ErrorCodeEnums.REQUEST_PARAM_ERROR.getDesc());
     }
     @ExceptionHandler(Exception.class)
     public ResponseResult<?> doException(Exception ex) {
-       if(ex instanceof HttpMessageNotReadableException){
-            return ResponseResult.fail(ErrorCodeEnums.REQUEST_PARAM_ERROR.getCode(),ErrorCodeEnums.REQUEST_PARAM_ERROR.getDesc());
-        } else {
-            logger.error("系统错误",ex);
-            return ResponseResult.fail(ErrorCodeEnums.SYSTEM_EXCEPTION.getCode(), "系统异常");
-        }
+        logger.error("系统错误",ex);
+        return ResponseResult.fail(ErrorCodeEnums.SYSTEM_EXCEPTION.getCode(), "系统异常:"+ex);
     }
-
 }
 

@@ -1,4 +1,4 @@
-package com.main.carbon_emission_monitor.dto.main;
+package com.main.carbon_emission_monitor.dto.indoor;
 
 import lombok.Data;
 

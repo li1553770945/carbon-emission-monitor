@@ -1,4 +1,4 @@
-package com.main.carbon_emission_monitor.dto.main;
+package com.main.carbon_emission_monitor.dto.photovoltaic;
 import lombok.Data;
 import java.util.List;
 
