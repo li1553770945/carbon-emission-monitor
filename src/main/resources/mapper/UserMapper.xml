@@ -1,18 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.main.carbon_emission_monitor.dao.UserDAO">
-    <select id="selectByUsername" resultType="com.main.carbon_emission_monitor.po.UserDO" parameterType="String">
-        SELECT * FROM user_entities WHERE username = #{username}
+    <resultMap id="userResultMap" type="com.main.carbon_emission_monitor.po.UserDO">
+        <id property="id" column="id"/>
+        <result property="username" column="user_name"/>
+        <result property="nickname" column="nick_name"/>
+        <result property="createAt" column="gmt_create"/>
+        <!-- 如果有更多字段，继续添加映射 -->
+    </resultMap>
+
+    <select id="selectByUsername"  resultMap="userResultMap" resultType="com.main.carbon_emission_monitor.po.UserDO" parameterType="String">
+        SELECT * FROM tb_user WHERE user_name = #{username}
     </select>
-    <select id="selectById" resultType="UserDO" parameterType="long">
-        SELECT * FROM user_entities WHERE id = #{id}
+    <select id="selectById"  resultMap="userResultMap" resultType="UserDO" parameterType="long">
+        SELECT * FROM tb_user WHERE id = #{id}
     </select>
     <insert id="insertUser" parameterType="com.main.carbon_emission_monitor.po.UserDO" useGeneratedKeys="true" keyProperty="id">
-        INSERT INTO user_entities (username, password,nickname,createAt)
+        INSERT INTO tb_user (user_name, password,nickname,gmt_create)
         VALUES (#{username}, #{password},#{nickname},#{createAt})
     </insert>
     <update id="updateUser" parameterType="com.main.carbon_emission_monitor.po.UserDO">
-        UPDATE user_entities
+        UPDATE tb_user
         SET
             password = #{password},
             nickname = #{nickname},
@@ -22,6 +30,6 @@
             id = #{id}
     </update>
     <select id="checkUserExistsByUsername" parameterType="String" resultType="java.lang.Boolean">
-        SELECT COUNT(*) FROM user_entities WHERE username = #{username}
+        SELECT COUNT(*) FROM tb_user WHERE username = #{username}
     </select>
 </mapper>
