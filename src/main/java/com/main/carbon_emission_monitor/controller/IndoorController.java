@@ -23,7 +23,7 @@ public class IndoorController {
     }
     @GetMapping("/environment")
     public ResponseResult<IndoorEnvironmentResponse> IndoorEnvironment(@RequestParam(name = "area")   @NotNull final String area) throws BusinessException {
-        IndoorEnvironmentResponse response = indoorService.IndoorEnvironment(area);
+        IndoorEnvironmentResponse response = indoorService.Environment(area);
         return ResponseResult.success(response);
     }
 

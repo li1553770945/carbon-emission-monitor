@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class IndoorService implements IIndoorService {
-    public IndoorEnvironmentResponse IndoorEnvironment(String area){
+    public IndoorEnvironmentResponse Environment(String area){
         IndoorEnvironmentResponse response = new IndoorEnvironmentResponse();
 
         response.setHumidity(Math.random() * 100); // Modify the range as needed.
