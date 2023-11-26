@@ -4,14 +4,14 @@ import com.main.carbon_emission_monitor.converter.UserConverter;
 import com.main.carbon_emission_monitor.dao.UserDAO;
 import com.main.carbon_emission_monitor.domain.user.UserEntity;
 import com.main.carbon_emission_monitor.po.UserDO;
-import com.main.carbon_emission_monitor.repo.UserRepo;
+import com.main.carbon_emission_monitor.repo.IUserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.time.LocalDateTime;
 
 @Repository
-public class UserRepoImpl implements UserRepo {
+public class UserRepoImpl implements IUserRepo {
 
     private final UserDAO userDAO;
 

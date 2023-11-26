@@ -3,7 +3,7 @@ package com.main.carbon_emission_monitor.controller;
 import com.main.carbon_emission_monitor.assmbler.UserAssembler;
 import com.main.carbon_emission_monitor.domain.user.UserEntity;
 import com.main.carbon_emission_monitor.dto.basic.BusinessException;
-import com.main.carbon_emission_monitor.dto.basic.ErrorCodeEnums;
+import com.main.carbon_emission_monitor.enums.ErrorCodeEnums;
 import com.main.carbon_emission_monitor.dto.user.LoginRequest;
 import com.main.carbon_emission_monitor.dto.user.LoginResponse;
 import com.main.carbon_emission_monitor.dto.user.RegisterRequest;

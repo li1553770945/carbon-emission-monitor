@@ -1,4 +1,4 @@
-package com.main.carbon_emission_monitor.dto.basic;
+package com.main.carbon_emission_monitor.enums;
 
 
 public interface ResultCode {

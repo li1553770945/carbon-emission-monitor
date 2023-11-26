@@ -1,7 +1,8 @@
 package com.main.carbon_emission_monitor.dto.basic;
 
 
-import java.io.Serial;
+import com.main.carbon_emission_monitor.enums.ResultCode;
+
 import java.io.Serializable;
 
 public class ResponseResult<T> implements  Serializable{
