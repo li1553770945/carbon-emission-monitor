@@ -1,14 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.main.carbon_emission_monitor.dao.UserDAO">
-    <resultMap id="userResultMap" type="com.main.carbon_emission_monitor.po.StatisticDO">
-
-    </resultMap>
-    <select id="getLatestNData" resultType="com.example.model.StatisticDO">
-        SELECT date, data
-        FROM statistic
-        WHERE type = #{type}
-        ORDER BY date DESC
-        LIMIT #{n}
+    <select id="getDeviceIdListByType" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+        SELECT device_id
+        FROM statistic_device
+        WHERE statistic_id = #{statisticType}
     </select>
+    <select id="getLatestData" parameterType="java.util.Date" resultType="com.main.carbon_emission_monitor.po.DeviceDataDO">
+        SELECT id,value, datetime
+        FROM device_data
+        WHERE device_id = #{deviceId} AND datetime &lt;= #{date}
+        ORDER BY datetime DESC
+        LIMIT 1
+    </select>
+
 </mapper>

@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.main.carbon_emission_monitor.dao.UserDAO">
-
-    <select id="selectByUsername"  resultMap="userResultMap" resultType="com.main.carbon_emission_monitor.po.UserDO" parameterType="String">
+    <select id="selectByUsername" resultType="com.main.carbon_emission_monitor.po.UserDO" parameterType="String">
         SELECT * FROM user WHERE username = #{username}
     </select>
-    <select id="selectById"  resultMap="userResultMap" resultType="UserDO" parameterType="long">
+    <select id="selectById"  resultType="UserDO" parameterType="long">
         SELECT * FROM user WHERE id = #{id}
     </select>
     <insert id="insertUser" parameterType="com.main.carbon_emission_monitor.po.UserDO" useGeneratedKeys="true" keyProperty="id">

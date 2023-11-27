@@ -1,17 +1,22 @@
 package com.main.carbon_emission_monitor.repo.impl;
 
+import com.main.carbon_emission_monitor.converter.DeviceConverter;
 import com.main.carbon_emission_monitor.converter.UserConverter;
 import com.main.carbon_emission_monitor.dao.DeviceDAO;
 import com.main.carbon_emission_monitor.dao.UserDAO;
+import com.main.carbon_emission_monitor.domain.device.DeviceDataEntity;
+import com.main.carbon_emission_monitor.domain.device.DevicePeriodDataEntity;
 import com.main.carbon_emission_monitor.domain.user.UserEntity;
 import com.main.carbon_emission_monitor.enums.DeviceTypeEnum;
-import com.main.carbon_emission_monitor.po.DeviceTypeDO;
+import com.main.carbon_emission_monitor.po.DeviceDataDO;
+import com.main.carbon_emission_monitor.po.DevicePeriodDataDO;
 import com.main.carbon_emission_monitor.po.UserDO;
 import com.main.carbon_emission_monitor.repo.IDeviceRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Repository
@@ -24,14 +29,24 @@ public class DeviceRepoImpl implements IDeviceRepo {
         this.deviceDAO = deviceDAO;
     }
 
-    public List<Integer> getDeviceIdListByType(DeviceTypeEnum type) {
-        List<Integer> devices = this.deviceDAO.getDeviceIdListByType(type.getValue());
-        List<Integer> deviceIds = new ArrayList<>();
-        for (Integer deviceID : devices) {
-            deviceIds.add(deviceID);
-        }
-        return deviceIds;
+    public List<Integer> getDeviceIdListByType(Integer statisticType){
+        List<Integer> devices = this.deviceDAO.getDeviceIdListByType(statisticType);
+        return new ArrayList<>(devices);
 
+    }
+    public DeviceDataEntity getLatestData(Integer deviceID, Date date) {
+        DeviceDataDO deviceData = deviceDAO.getLatestData(deviceID,date);
+        return DeviceConverter.INSTANCE.DeviceDataDOToEntity(deviceData);
+    }
+
+    public DevicePeriodDataEntity getPeriodData(Integer deviceID, Date startDate, Date endDate) {
+       DeviceDataDO start = deviceDAO.getLatestData(deviceID,startDate);
+       DeviceDataDO end = deviceDAO.getLatestData(deviceID,endDate);
+       DevicePeriodDataDO devicePeriodDataDO = new DevicePeriodDataDO();
+       devicePeriodDataDO.setStartDatetime(startDate);
+       devicePeriodDataDO.setEndDatetime(endDate);
+       devicePeriodDataDO.setValue(end.getValue() - start.getValue());
+       return DeviceConverter.INSTANCE.DevicePeriodDataDOToEntity(devicePeriodDataDO);
     }
 
 }
