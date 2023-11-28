@@ -9,5 +9,5 @@ import java.util.List;
 @Repository
 public interface DeviceDAO {
     List<Integer> getDeviceIdListByType(Integer statisticType);
-    DeviceDataDO getLatestData(Integer DeviceID, Date date);
+    DeviceDataDO getLatestData(Integer deviceID, Date date);
 }

@@ -8,8 +8,9 @@ import java.util.List;
 
 public interface IDeviceRepo {
     List<Integer> getDeviceIdListByType(Integer statisticType);
-    DeviceDataEntity getLatestData(Integer DeviceID, Date date);
+    DeviceDataEntity getLatestData(Integer deviceID, Date date);
 
     DevicePeriodDataEntity getPeriodData(Integer deviceID, Date startDate, Date endDate);
+    DevicePeriodDataEntity getPeriodDataByStatisticType(Integer statisticType, Date startDate, Date endDate);
 
 }

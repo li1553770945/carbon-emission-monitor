@@ -1,16 +1,11 @@
 package com.main.carbon_emission_monitor.repo.impl;
 
 import com.main.carbon_emission_monitor.converter.DeviceConverter;
-import com.main.carbon_emission_monitor.converter.UserConverter;
 import com.main.carbon_emission_monitor.dao.DeviceDAO;
-import com.main.carbon_emission_monitor.dao.UserDAO;
 import com.main.carbon_emission_monitor.domain.device.DeviceDataEntity;
 import com.main.carbon_emission_monitor.domain.device.DevicePeriodDataEntity;
-import com.main.carbon_emission_monitor.domain.user.UserEntity;
-import com.main.carbon_emission_monitor.enums.DeviceTypeEnum;
 import com.main.carbon_emission_monitor.po.DeviceDataDO;
 import com.main.carbon_emission_monitor.po.DevicePeriodDataDO;
-import com.main.carbon_emission_monitor.po.UserDO;
 import com.main.carbon_emission_monitor.repo.IDeviceRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -47,6 +42,32 @@ public class DeviceRepoImpl implements IDeviceRepo {
        devicePeriodDataDO.setEndDatetime(endDate);
        devicePeriodDataDO.setValue(end.getValue() - start.getValue());
        return DeviceConverter.INSTANCE.DevicePeriodDataDOToEntity(devicePeriodDataDO);
+    }
+
+    public DevicePeriodDataEntity getPeriodDataByStatisticType(Integer statisticType, Date startDate, Date endDate) {
+        List<Integer> devices = this.deviceDAO.getDeviceIdListByType(statisticType);
+        double startSum = 0,endSum = 0;
+        for (Integer deviceID :devices){
+            DeviceDataDO start = deviceDAO.getLatestData(deviceID,startDate);
+            if (start == null){
+                startSum += 0;
+            } else {
+                startSum += start.getValue();
+            }
+
+            DeviceDataDO end = deviceDAO.getLatestData(deviceID,endDate);
+            if (end == null){
+                endSum += 0;
+            } else {
+                endSum += end.getValue();
+            }
+        }
+
+        DevicePeriodDataDO devicePeriodDataDO = new DevicePeriodDataDO();
+        devicePeriodDataDO.setStartDatetime(startDate);
+        devicePeriodDataDO.setEndDatetime(endDate);
+        devicePeriodDataDO.setValue(endSum - startSum);
+        return DeviceConverter.INSTANCE.DevicePeriodDataDOToEntity(devicePeriodDataDO);
     }
 
 }
