@@ -14,4 +14,20 @@
         LIMIT 1
     </select>
 
+    <select id="getLatestSum" resultType="java.lang.Double">
+        SELECT SUM(latest_data.value) as total_value
+        FROM (
+        SELECT dd.device_id, MAX(dd.datetime) as latest_time
+        FROM device_data dd
+        INNER JOIN statistic_device sd ON dd.device_id = sd.device_id
+        WHERE sd.statistic_id = #{statisticType} -- 这里是传入的参数
+        AND dd.datetime &lt;= #{date}
+        GROUP BY dd.device_id
+        ) as latest_per_device
+        INNER JOIN device_data as latest_data
+        ON latest_per_device.device_id = latest_data.device_id
+        AND latest_per_device.latest_time = latest_data.datetime;
+    </select>
+
+
 </mapper>

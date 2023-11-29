@@ -45,24 +45,14 @@ public class DeviceRepoImpl implements IDeviceRepo {
     }
 
     public DevicePeriodDataEntity getPeriodDataByStatisticType(Integer statisticType, Date startDate, Date endDate) {
-        List<Integer> devices = this.deviceDAO.getDeviceIdListByType(statisticType);
-        double startSum = 0,endSum = 0;
-        for (Integer deviceID :devices){
-            DeviceDataDO start = deviceDAO.getLatestData(deviceID,startDate);
-            if (start == null){
-                startSum += 0;
-            } else {
-                startSum += start.getValue();
-            }
-
-            DeviceDataDO end = deviceDAO.getLatestData(deviceID,endDate);
-            if (end == null){
-                endSum += 0;
-            } else {
-                endSum += end.getValue();
-            }
+        Double startSum = this.deviceDAO.getLatestSum(statisticType,startDate);
+        Double endSum = this.deviceDAO.getLatestSum(statisticType,endDate);
+        if(startSum == null){
+            startSum = (double) 0;
         }
-
+        if(endSum == null){
+            endSum = (double) 0;
+        }
         DevicePeriodDataDO devicePeriodDataDO = new DevicePeriodDataDO();
         devicePeriodDataDO.setStartDatetime(startDate);
         devicePeriodDataDO.setEndDatetime(endDate);
