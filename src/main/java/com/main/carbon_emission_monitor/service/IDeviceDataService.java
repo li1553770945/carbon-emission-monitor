@@ -7,9 +7,9 @@ import java.util.Calendar;
 import java.util.List;
 
 public interface IDeviceDataService {
-    MeteringResponse.PeroidData getDailyData(StatisticTypeEnum type, Calendar calendar);
-    MeteringResponse.PeroidData getWeeklyData(StatisticTypeEnum type,Calendar calendar);
-    MeteringResponse.PeroidData getMonthlyData(StatisticTypeEnum type,Calendar calendar);
-    MeteringResponse.PeroidData getYearlyData(StatisticTypeEnum type,Calendar calendar);
+    MeteringResponse.PeriodData getDailyData(StatisticTypeEnum type, Calendar calendar);
+    MeteringResponse.PeriodData getWeeklyData(StatisticTypeEnum type, Calendar calendar);
+    MeteringResponse.PeriodData getMonthlyData(StatisticTypeEnum type, Calendar calendar);
+    MeteringResponse.PeriodData getYearlyData(StatisticTypeEnum type, Calendar calendar);
     List<MeteringResponse.ConsumptionData> getLastNDayData(StatisticTypeEnum type, Calendar calendar,int n);
 }
