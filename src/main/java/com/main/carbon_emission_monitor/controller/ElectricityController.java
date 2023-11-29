@@ -1,7 +1,7 @@
 package com.main.carbon_emission_monitor.controller;
 import com.main.carbon_emission_monitor.dto.basic.BusinessException;
 import com.main.carbon_emission_monitor.dto.basic.ResponseResult;
-import com.main.carbon_emission_monitor.dto.electricity.MeteringResponse;
+import com.main.carbon_emission_monitor.dto.metering.MeteringResponse;
 import com.main.carbon_emission_monitor.service.IElectricityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;

@@ -1,5 +1,5 @@
 package com.main.carbon_emission_monitor.service;
-import com.main.carbon_emission_monitor.dto.electricity.MeteringResponse;
+import com.main.carbon_emission_monitor.dto.metering.MeteringResponse;
 
 public interface IElectricityService {
         MeteringResponse Metering();
