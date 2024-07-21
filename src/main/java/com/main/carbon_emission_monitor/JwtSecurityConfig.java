@@ -43,7 +43,7 @@ public class JwtSecurityConfig {
         return http.cors(withDefaults())
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests((authorize) -> authorize
-                        .requestMatchers("/api/user/login","/api/user/register").permitAll()
+                        .requestMatchers("/api/user/login","/api/user/register","/api/user/me").permitAll()
                                 .anyRequest().authenticated()
                         )
                 .sessionManagement((session) -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
